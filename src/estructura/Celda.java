@@ -23,11 +23,6 @@ public class Celda {
 		this.capacidad = capacidad;
 	}
 	public Celda() {}	
-	private Celda(Celda c){
-		this.capacidad = c.capacidad;
-		this.caudal = c.caudal;
-		this.posicion = c.posicion;
-	}
 	
 	// METODOS GET Y SET	
 	

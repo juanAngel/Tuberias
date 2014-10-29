@@ -10,6 +10,7 @@ package estructura;
 
 public class Contador extends Celda{
 	
+	
 	// ATRIBUTOS
 	
 	int incCaudal = 0;
