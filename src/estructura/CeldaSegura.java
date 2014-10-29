@@ -1,5 +1,11 @@
 package estructura;
-
+/**
+ * Esta clase representa los componentes basicos de las tuberias, como las posiciones
+ * en un tablero de ajedrez.
+ * 
+ * @author Juan Angel Sanchez Lopez - Tomás Gómez Castilla 
+ * 
+ */
 
 
 public class CeldaSegura extends Celda {
