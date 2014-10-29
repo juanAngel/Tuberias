@@ -1,5 +1,13 @@
 package estructura;
 
+/**
+ * Esta clase representa las llaves del juego, donde se puede bloquear la inserccion
+ * y la extraccion del agua.
+ * 
+ * @author Juan Angel Sanchez Lopez - Tomás Gómez Castilla 
+ * 
+ */
+
 public class Llave extends Celda {
 	
 	// ATRIBUTOS
@@ -24,16 +32,25 @@ public class Llave extends Celda {
 	
 	// METODOS
 	
-	public void tolggleAbierta(){
+	/**
+	 * Cambia el estado de abierto. De true a false y viceversa.
+	 */
+	public void conmutarAbierta(){
 		abierta ^= true;
 	}
 	
+	/**
+	 * Permite el paso del agua si abierta es true.
+	 */
 	@Override
-	public void agregarAgua(Celda origen){
+	public void añadirAgua(Celda origen){
 		if(abierta)
-			super.agregarAgua(origen);
+			super.añadirAgua(origen);
 	}
 
+	/**
+	 * Impide el paso del agua si abierta es false.
+	 */
 	@Override
 	public void extraerAgua(Celda origen){
 		if(abierta)

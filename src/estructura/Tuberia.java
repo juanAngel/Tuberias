@@ -6,7 +6,7 @@ import java.util.Set;
  * Esta clase representa la tuberia que no es mas que un grupo de celdas unidas
  * entre si.
  * 
- * @author Juan Angel  - Tomás Gómez Castilla 
+ * @author Juan Angel Sanchez Lopez - Tomás Gómez Castilla 
  * 
  */
 
@@ -37,10 +37,10 @@ public class Tuberia {
 		return matriz.length;
 	}
 	
-	public boolean setCelda(Celda celda,Posicion pos){
+	public boolean establecerCelda(Celda celda,Posicion pos){
 		boolean status = false;
 		Direccion dirAdy = null;
-		if(getCelda(pos) == null){
+		if(obtenerCelda(pos) == null){
 			Direccion direciones[] = Direccion.values();
 			Posicion posTemp;
 			boolean multipleVecinas = false;
@@ -57,16 +57,16 @@ public class Tuberia {
 			}
 			if(dirAdy != null){
 				posTemp = pos.adyacente(dirAdy);
-				Celda vecina = getCelda(posTemp);
+				Celda vecina = obtenerCelda(posTemp);
 				if(celda != null){
 					celda.resetVecinas();
 				
 					//seteo la vecindad y la posicion
-					celda.setVecina(dirAdy, vecina);
+					celda.establecerVecina(dirAdy, vecina);
 					celda.setPosicion(pos);
 				}
 				
-				vecina.setVecina(dirAdy.opuesta(), celda);
+				vecina.establecerVecina(dirAdy.opuesta(), celda);
 
 				matriz[pos.getY()][pos.getX()] = celda;
 
@@ -83,11 +83,11 @@ public class Tuberia {
 			//Seteo la vecindad de todos los alrededores
 			for(int i = 0;i<direciones.length;i++){
 				dirAdy = direciones[i];
-				celVecina = getVecina(pos,dirAdy);
+				celVecina = obtenerVecina(pos,dirAdy);
 				if(celVecina != null){
 					if(celda != null)
-						celda.setVecina(dirAdy, celVecina);
-					celVecina.setVecina(dirAdy.opuesta(), celda);
+						celda.establecerVecina(dirAdy, celVecina);
+					celVecina.establecerVecina(dirAdy.opuesta(), celda);
 				}
 			}
 			
@@ -97,19 +97,19 @@ public class Tuberia {
 		return status;
 	}
 	
-	public Celda getCelda(Posicion pos){
+	public Celda obtenerCelda(Posicion pos){
 		return matriz[pos.getY()][pos.getX()];
 	}
 	
-	public Celda getVecina(Posicion pos,Direccion dir){
-		return getCelda(pos.adyacente(dir));
+	public Celda obtenerVecina(Posicion pos,Direccion dir){
+		return obtenerCelda(pos.adyacente(dir));
 	}
 	
 
 	// METODOS
 	
 	public boolean hayVecina(Posicion pos,Direccion dir){
-		return getCelda(pos.adyacente(dir)) != null;
+		return obtenerCelda(pos.adyacente(dir)) != null;
 	}
 	
 	public void crearTubo(Posicion pos,Direccion dir,int largo){
@@ -118,13 +118,13 @@ public class Tuberia {
 		//Compruevo que el tubo no se salga
 		if(matriz.length>posFinal.getY() && matriz[0].length > posFinal.getX()){
 			for(Posicion posActual = pos;largo != 0;largo--,posActual = posActual.adyacente(dir)){
-				setCelda(new Celda(), posActual);
+				establecerCelda(new Celda(), posActual);
 			}
 		}
 	}
 	
 	public void insertarEntidad(Entidad e,Posicion p){
-		Celda celda = getCelda(p);
+		Celda celda = obtenerCelda(p);
 		if(celda != null){
 			e.setTuberia(this);
 			e.setPosActual(p);

@@ -3,7 +3,7 @@ package estructura;
 /**
  * En este enumerado se representa las cuatro posibles direcciones.
  * 
- * @author Juan Angel  - Tomás Gómez Castilla 
+ * @author Juan Angel Sanchez Lopez  - Tomás Gómez Castilla 
  * 
  */
 
@@ -18,7 +18,6 @@ public enum Direccion {
 	/**
 	 * Devuelve la direccion opuesta a la direccion actual del mismo.
 	 */
-	
 	public Direccion opuesta(){
 		
 		switch (this) {
@@ -39,7 +38,6 @@ public enum Direccion {
 	/**
 	 * Devuelve una direccion aleatorio de las cuatro posibles.
 	 */
-	
 	public static Direccion aleatoria() {
 		Direccion direcciones[] = values();
 		return direcciones[(int)(Math.random()*direcciones.length)];

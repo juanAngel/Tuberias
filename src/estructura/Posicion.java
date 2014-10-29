@@ -4,7 +4,7 @@ package estructura;
  * Esta clase representa la posicion respecto un eje de coordenadas X e Y.
  * Es la posicion dentro del tablero de juego.
  * 
- * @author Juan Angel  - Tomás Gómez Castilla 
+ * @author Juan Angel Sanchez Lopez  - Tomás Gómez Castilla 
  * 
  */
 
@@ -45,15 +45,13 @@ public class Posicion {
 	 * Devuelve un objeto posicion adyacente al de la llamada segun la direccion
 	 * que se le pase por parametro.
 	 */
-	
 	public Posicion adyacente(Direccion d){
 		return desplazar(d, 1);
 	}
 	
 	/**
-	 * ????????????????????????????????????????????????????????
+	 * ???¿¿¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?
 	 */
-	
 	public Posicion desplazar(Direccion d,int distancia){
 		if(distancia<0)
 			return null;
@@ -80,7 +78,6 @@ public class Posicion {
 	 * Devuelve true o false dependiendo si una posicion es adyacente a otra
 	 * en un posicion determinada
 	 */
-	
 	public boolean esAdyacente(Posicion p){
 		return Math.abs(x-p.x+y-p.y)==1;
 	}
@@ -88,7 +85,6 @@ public class Posicion {
 	/**
 	 * Devuelve la distancia respecto a la posicion pasada por parametro.
 	 */
-	
 	public double distancia(Posicion p){
 		return Math.sqrt(Math.pow(x-p.x, 2)+Math.pow(y-p.y, 2));
 	}
