@@ -34,10 +34,26 @@ public class Bloque1Test {
 		
 		// PRUEBA CLASE CELDA
 		
-		Celda celda1 = new Celda();
-		Celda celda2 = new Celda(5);
+		Celda celda1 = new Celda();	celda1.setPosicion(posicion1);
+		Celda celda2 = new Celda(1); celda2.setPosicion(posicion2);
 		
+		System.out.println("celda1 -> x = " + celda1.getPosicion().getX() + " // y = " + celda1.getPosicion().getY()
+				 + " // caudal = " + celda1.getCaudal() + " // capacidad = " + celda1.getCapacidad());
 		
+		System.out.println("celda2 -> x = " + celda2.getPosicion().getX() + " // y = " + celda2.getPosicion().getY()
+				 + " // caudal = " + celda2.getCaudal() + " // capacidad = " + celda2.getCapacidad());
+		
+		celda2.añadirAgua(); celda2.añadirAgua(); celda2.extraerAgua(); celda2.extraerAgua(); 
+		
+		System.out.println("celda2 -> x = " + celda2.getPosicion().getX() + " // y = " + celda2.getPosicion().getY()
+				 + " // caudal = " + celda2.getCaudal() + " // capacidad = " + celda2.getCapacidad());
+		
+		// PRUEBA CLASE TUBERIAS
+		
+		Tuberia tuberia1 = new Tuberia(5,6,posicion1);
+		Tuberia tuberia2 = new Tuberia(7,7,posicion2);
+		
+		System.out.println("Tuberia1 -> ancho =  " + tuberia1.getAlto() + " // alto = " + tuberia1.getAncho());		
 		
 	}
 

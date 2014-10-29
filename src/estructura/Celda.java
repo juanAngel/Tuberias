@@ -22,6 +22,7 @@ public class Celda {
 	public Celda(int capacidad) {
 		this.capacidad = capacidad;
 	}
+	
 	public Celda() {}	
 	
 	// METODOS GET Y SET	
@@ -50,8 +51,17 @@ public class Celda {
 		return vecinas[dir.ordinal()];
 	}
 	
-	// METODOS
+	public int getCaudal() {
+		return caudal;
+	}
+
+	public int getCapacidad() {
+		return capacidad;
+	}
 	
+	// METODOS
+
+
 	/**
 	 * Incrementa el caudal en uno, siempre que no se pase de la capacidad
 	 */
@@ -63,15 +73,15 @@ public class Celda {
 	/**
 	 * Decrementa el caudal en uno, siempre que no se pase de cero.
 	 */
-	void decrementarCaudal(){
-		if(capacidad>caudal)
-			caudal++;
+     void decrementarCaudal(){
+		if(caudal>0)
+			caudal--;
 	}
 
 	/**
 	 * Eliminar la relacion con todas las celdas vecinas
 	 */
-	void resetVecinas(){
+	 void resetVecinas(){
 		for (int i = 0; i < vecinas.length; i++) {
 			vecinas[i] = null;
 		}
@@ -90,7 +100,7 @@ public class Celda {
 	 */
 	public void añadirAgua(Celda origen){
 		if(caudal<capacidad){
-			caudal++;
+			incrementarCaudal();
 		}else{
 			Celda vecina;
 			Direccion direcciones[] = Direccion.values();
@@ -114,7 +124,7 @@ public class Celda {
 	 */
 	public void extraerAgua(Celda origen){
 		if(caudal>0){
-			caudal--;
+			decrementarCaudal();
 		}else{
 			Celda vecina;
 			Direccion direcciones[] = Direccion.values();
