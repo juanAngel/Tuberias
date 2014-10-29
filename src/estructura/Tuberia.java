@@ -2,9 +2,22 @@ package estructura;
 
 import java.util.Set;
 
+/**
+ * Esta clase representa la tuberia que no es mas que un grupo de celdas unidas
+ * entre si.
+ * 
+ * @author Juan Angel  - Tomás Gómez Castilla 
+ * 
+ */
+
 public class Tuberia {
+	
+	// ATRIBUTOS
+	
 	private Celda matriz[][];
 	private Set<Entidad> entidades;
+	
+	// CONSTRUCTOR
 	
 	public Tuberia(int ancho,int alto,Posicion celdaInicial) {
 		matriz = new Celda[alto][ancho];
@@ -13,13 +26,17 @@ public class Tuberia {
 		newCelda.setPosicion(celdaInicial);
 		matriz[celdaInicial.getY()][celdaInicial.getX()] = newCelda;
 	}
+	
+	// METODOS GET Y SET
 
 	public int getAncho(){
 		return matriz[0].length;
 	}
+	
 	public int getAlto(){
 		return matriz.length;
 	}
+	
 	public boolean setCelda(Celda celda,Posicion pos){
 		boolean status = false;
 		Direccion dirAdy = null;
@@ -79,15 +96,22 @@ public class Tuberia {
 		}
 		return status;
 	}
+	
 	public Celda getCelda(Posicion pos){
 		return matriz[pos.getY()][pos.getX()];
 	}
+	
 	public Celda getVecina(Posicion pos,Direccion dir){
 		return getCelda(pos.adyacente(dir));
 	}
+	
+
+	// METODOS
+	
 	public boolean hayVecina(Posicion pos,Direccion dir){
 		return getCelda(pos.adyacente(dir)) != null;
 	}
+	
 	public void crearTubo(Posicion pos,Direccion dir,int largo){
 		Posicion posFinal = pos.desplazar(dir, largo);
 		
@@ -98,6 +122,7 @@ public class Tuberia {
 			}
 		}
 	}
+	
 	public void insertarEntidad(Entidad e,Posicion p){
 		Celda celda = getCelda(p);
 		if(celda != null){
@@ -106,6 +131,7 @@ public class Tuberia {
 			entidades.add(e);
 		}
 	}
+	
 	public void sacarEntidad(Entidad e){
 		if (entidades.contains(e)) {
 			e.setPosActual(null);

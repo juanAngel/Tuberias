@@ -1,10 +1,18 @@
 package estructura;
 
 public class Contador extends Celda{
+	
+	// ATRIBUTOS
+	
 	int incCaudal = 0;
+	
+	// CONSTRUCTORES
+	
 	public Contador() {
 		super(1);
 	}
+	
+	// METODOS
 
 	@Override
 	public void agregarAgua(Celda origen){
@@ -17,7 +25,9 @@ public class Contador extends Celda{
 				vecina.agregarAgua(this);
 		}
 	}
+	
 	public int getIncCaudal(){
 		return incCaudal;
 	}
+
 }

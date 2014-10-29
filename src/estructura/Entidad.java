@@ -1,10 +1,14 @@
 package estructura;
 
 public abstract class Entidad {
+	
+	// ATRIBUTOS
+	
 	private Posicion posActual;
 	private Tuberia tuberia;
-	
 	public abstract void turno();
+	
+	// METODOS GET Y SET
 
 	public Posicion getPosActual() {
 		return posActual;
@@ -17,6 +21,7 @@ public abstract class Entidad {
 	public Tuberia getTuberia() {
 		return tuberia;
 	}
+	
 	public boolean inTuberia(){
 		return getTuberia() != null;
 	}
@@ -24,9 +29,14 @@ public abstract class Entidad {
 	public void setTuberia(Tuberia tuberia) {
 		this.tuberia = tuberia;
 	}
+	
 	public Celda getCelda(){
+		
 		return tuberia==null?null:tuberia.getCelda(posActual);
 	}
+	
+	// METODOS
+	
 	public void mover(Direccion d){
 		if(inTuberia()){
 			Celda siguienteCelda = tuberia.getCelda(posActual.adyacente(d));

@@ -1,10 +1,18 @@
 package estructura;
 
 public class Llave extends Celda {
+	
+	// ATRIBUTOS
+	
 	private boolean abierta;
 	
+	// CONSTRCUTOR
+	
 	public Llave() {
+		
 	}
+	
+	// METODOS GET Y SET
 
 	public boolean isAbierta() {
 		return abierta;
@@ -13,6 +21,9 @@ public class Llave extends Celda {
 	public void setAbierta(boolean abierta) {
 		this.abierta = abierta;
 	}
+	
+	// METODOS
+	
 	public void tolggleAbierta(){
 		abierta ^= true;
 	}
@@ -29,6 +40,8 @@ public class Llave extends Celda {
 			super.extraerAgua(origen);
 	}
 
+	// METODOS OBJECT
+	
 	@Override
 	public Celda clone() {
 		return new Llave();
