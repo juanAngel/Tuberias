@@ -4,7 +4,7 @@ package estructura;
  * Esta clase representa los componentes basicos de las tuberias, como las posiciones
  * en un tablero de ajedrez.
  * 
- * @author Juan Angel  - Tomás Gómez Castilla 
+ * @author Juan Angel Sanchez Lopez - Tomás Gómez Castilla 
  * 
  */
 
