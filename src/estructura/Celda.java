@@ -91,15 +91,15 @@ public class Celda {
 	/**
 	 * Incrementa el caudal de la celda y si esta saturada se propaga a las vecinas
 	 */
-	public void añadirAgua(){
-		añadirAgua(null);
+	public void aÃ±adirAgua(){
+		aÃ±adirAgua(null);
 	}
 	
 	/**
 	 * Incrementa el caudal de la celda y si esta saturada se propaga a las vecinas.
 	 * Con la celda de origen
 	 */
-	public void añadirAgua(Celda origen){
+	public void aÃ±adirAgua(Celda origen){
 		if(caudal<capacidad){
 			incrementarCaudal();
 		}else{
@@ -108,7 +108,7 @@ public class Celda {
 			for(int i = 0;i<direcciones.length;i++){
 				vecina = consultarVecina(direcciones[i]);
 				if(vecina != null && vecina != origen)
-					vecina.añadirAgua(this);
+					vecina.aÃ±adirAgua(this);
 			}
 		}
 	}
@@ -132,7 +132,7 @@ public class Celda {
 			for(int i = 0;i<direcciones.length;i++){
 				vecina = consultarVecina(direcciones[i]);
 				if(vecina != null && vecina != origen)
-					vecina.añadirAgua(this);
+					vecina.aÃ±adirAgua(this);
 			}
 		}
 	}
