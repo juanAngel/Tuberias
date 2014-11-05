@@ -29,7 +29,7 @@ public class Contador extends Celda{
 	 */
 	@Override
 	public void añadirAgua(Celda origen){
-		//incCaudal++;  
+		incCaudal++;  
 		Celda vecina;
 		Direccion direcciones[] = Direccion.values();
 		for(int i = 0;i<direcciones.length;i++){
