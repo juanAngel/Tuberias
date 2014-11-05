@@ -1,5 +1,6 @@
 package estructura;
 
+
 /**
  * Esta clase representa la posicion respecto un eje de coordenadas X e Y.
  * Es la posicion dentro del tablero de juego.

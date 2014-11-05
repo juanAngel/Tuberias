@@ -11,7 +11,8 @@ public class Bloque1Test {
 
 	
 		// PRUEBA CLASE DIRECCION
-	
+		
+		
 		System.out.println("DIRRECCION OPUESTA(ABAJO): " + Direccion.ABAJO.opuesta());		
 		System.out.println("DIRRECCION ALEATORIA: " + Direccion.aleatoria());
 		

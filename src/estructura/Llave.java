@@ -1,5 +1,6 @@
 package estructura;
 
+
 /**
  * Esta clase representa las llaves del juego, donde se puede bloquear la inserccion
  * y la extraccion del agua.

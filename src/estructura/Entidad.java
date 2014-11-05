@@ -1,5 +1,6 @@
 package estructura;
 
+
 public abstract class Entidad {
 	
 	// ATRIBUTOS

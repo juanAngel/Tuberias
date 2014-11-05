@@ -1,5 +1,6 @@
 package estructura;
 
+
 /**
  * Esta clase representa los componentes basicos de las tuberias, como las posiciones
  * en un tablero de ajedrez.

@@ -1,5 +1,6 @@
 package estructura;
 
+
 /**
  * En esta clase se representara el contador. Este lleva una cuenta del agua que se introduce
  * en la celda, ademas deja salir el agua de la tuberia.

@@ -2,6 +2,7 @@ package estructura;
 
 import java.util.Set;
 
+
 /**
  * Esta clase representa la tuberia que no es mas que un grupo de celdas unidas
  * entre si.

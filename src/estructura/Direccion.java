@@ -1,5 +1,6 @@
 package estructura;
 
+
 /**
  * En este enumerado se representa las cuatro posibles direcciones.
  * 
