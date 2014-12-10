@@ -15,7 +15,7 @@ public class Celda {
 	
 	final private int capacidad;
 	private int caudal;
-	private Celda vecinas[] = new Celda[4];
+	final private Celda vecinas[] = new Celda[4];
 	private Posicion posicion;
 	
 	// CONSTRUCTORES
