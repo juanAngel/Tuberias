@@ -13,7 +13,7 @@ public class Celda {
 	
 	// ATRIBUTOS
 	
-	private int capacidad = 5;
+	final private int capacidad;
 	private int caudal;
 	private Celda vecinas[] = new Celda[4];
 	private Posicion posicion;
@@ -24,7 +24,9 @@ public class Celda {
 		this.capacidad = capacidad;
 	}
 	
-	public Celda() {}	
+	public Celda() {
+		this(5);
+	}	
 	
 	// METODOS GET Y SET	
 	
