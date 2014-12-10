@@ -23,21 +23,4 @@ public class CeldaSegura extends Celda {
 	public Celda clone() {
 		return new CeldaSegura();
 	}
-	
-	public String toString(){
-		
-		return this.toString();
-	}
-	
-	public int hashcode (){
-		
-		return this.hashcode();
-	}
-	
-	public boolean equals(Object obj){
-
-		return this.equals(obj);
-		
-	}
-	
 }

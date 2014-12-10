@@ -7,7 +7,7 @@ import java.util.Set;
  * Esta clase representa la tuberia que no es mas que un grupo de celdas unidas
  * entre si.
  * 
- * @author Juan Angel Sanchez Lopez - Tom·s GÛmez Castilla 
+ * @author Juan Angel Sanchez Lopez - Tom√°s G√≥mez Castilla 
  * 
  */
 
@@ -38,10 +38,10 @@ public class Tuberia {
 		return matriz.length;
 	}
 	
-	public boolean establecerCelda(Celda celda,Posicion pos){
+	public boolean setCelda(Celda celda,Posicion pos){
 		boolean status = false;
 		Direccion dirAdy = null;
-		if(obtenerCelda(pos) == null){
+		if(getCelda(pos) == null){
 			Direccion direciones[] = Direccion.values();
 			Posicion posTemp;
 			boolean multipleVecinas = false;
@@ -58,7 +58,7 @@ public class Tuberia {
 			}
 			if(dirAdy != null){
 				posTemp = pos.adyacente(dirAdy);
-				Celda vecina = obtenerCelda(posTemp);
+				Celda vecina = getCelda(posTemp);
 				if(celda != null){
 					celda.resetVecinas();
 				
@@ -84,7 +84,7 @@ public class Tuberia {
 			//Seteo la vecindad de todos los alrededores
 			for(int i = 0;i<direciones.length;i++){
 				dirAdy = direciones[i];
-				celVecina = obtenerVecina(pos,dirAdy);
+				celVecina = setVecina(pos,dirAdy);
 				if(celVecina != null){
 					if(celda != null)
 						celda.establecerVecina(dirAdy, celVecina);
@@ -98,19 +98,19 @@ public class Tuberia {
 		return status;
 	}
 	
-	public Celda obtenerCelda(Posicion pos){
+	public Celda getCelda(Posicion pos){
 		return matriz[pos.getY()][pos.getX()];
 	}
 	
-	public Celda obtenerVecina(Posicion pos,Direccion dir){
-		return obtenerCelda(pos.adyacente(dir));
+	public Celda setVecina(Posicion pos,Direccion dir){
+		return getCelda(pos.adyacente(dir));
 	}
 	
 
 	// METODOS
 	
 	public boolean hayVecina(Posicion pos,Direccion dir){
-		return obtenerCelda(pos.adyacente(dir)) != null;
+		return getCelda(pos.adyacente(dir)) != null;
 	}
 	
 	public void crearTubo(Posicion pos,Direccion dir,int largo){
@@ -119,13 +119,13 @@ public class Tuberia {
 		//Compruevo que el tubo no se salga
 		if(matriz.length>posFinal.getY() && matriz[0].length > posFinal.getX()){
 			for(Posicion posActual = pos;largo != 0;largo--,posActual = posActual.adyacente(dir)){
-				establecerCelda(new Celda(), posActual);
+				setCelda(new Celda(), posActual);
 			}
 		}
 	}
 	
 	public void insertarEntidad(Entidad e,Posicion p){
-		Celda celda = obtenerCelda(p);
+		Celda celda = getCelda(p);
 		if(celda != null){
 			e.setTuberia(this);
 			e.setPosActual(p);

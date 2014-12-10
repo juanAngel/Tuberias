@@ -5,7 +5,7 @@ package estructura;
  * Esta clase representa la posicion respecto un eje de coordenadas X e Y.
  * Es la posicion dentro del tablero de juego.
  * 
- * @author Juan Angel Sanchez Lopez  - Tomás Gómez Castilla 
+ * @author Juan Angel Sanchez Lopez  - TomÃ¡s GÃ³mez Castilla 
  * 
  */
 
@@ -51,7 +51,7 @@ public class Posicion {
 	}
 	
 	/**
-	 * ???¿¿¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?
+	 * 
 	 */
 	public Posicion desplazar(Direccion d,int distancia){
 		if(distancia<0)

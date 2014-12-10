@@ -28,14 +28,14 @@ public class Contador extends Celda{
 	 * Incrementa el caudal en uno y deja salir el agua.
 	 */
 	@Override
-	public void añadirAgua(Celda origen){
+	public void agregarAgua(Celda origen){
 		incCaudal++;  
 		Celda vecina;
 		Direccion direcciones[] = Direccion.values();
 		for(int i = 0;i<direcciones.length;i++){
 			vecina = consultarVecina(direcciones[i]);
 			if(vecina != null && vecina != origen)
-				vecina.añadirAgua(this);
+				vecina.agregarAgua(this);
 		}
 	}
 	

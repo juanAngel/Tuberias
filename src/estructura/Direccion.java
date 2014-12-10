@@ -4,7 +4,7 @@ package estructura;
 /**
  * En este enumerado se representa las cuatro posibles direcciones.
  * 
- * @author Juan Angel Sanchez Lopez  - Tom·s GÛmez Castilla 
+ * @author Juan Angel Sanchez Lopez  - Tom√°s G√≥mez Castilla 
  * 
  */
 

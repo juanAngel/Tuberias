@@ -33,14 +33,14 @@ public abstract class Entidad {
 	
 	public Celda getCelda(){
 		
-		return tuberia==null?null:tuberia.obtenerCelda(posActual);
+		return tuberia==null?null:tuberia.getCelda(posActual);
 	}
 	
 	// METODOS
 	
 	public void mover(Direccion d){
 		if(inTuberia()){
-			Celda siguienteCelda = tuberia.obtenerCelda(posActual.adyacente(d));
+			Celda siguienteCelda = tuberia.getCelda(posActual.adyacente(d));
 			if(siguienteCelda != null){
 				setPosActual(siguienteCelda.getPosicion());
 			}
