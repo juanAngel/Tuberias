@@ -2,6 +2,8 @@ package estructura;
 
 import java.util.Set;
 
+import juego.Entidad;
+
 
 /**
  * Esta clase representa la tuberia que no es mas que un grupo de celdas unidas

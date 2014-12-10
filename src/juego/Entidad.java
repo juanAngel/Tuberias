@@ -1,4 +1,9 @@
-package estructura;
+package juego;
+
+import estructura.Celda;
+import estructura.Direccion;
+import estructura.Posicion;
+import estructura.Tuberia;
 
 
 public abstract class Entidad {
