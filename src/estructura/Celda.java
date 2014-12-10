@@ -63,7 +63,11 @@ public class Celda {
 	}
 	
 	// METODOS
-
+	@Override
+	protected Celda clone() throws CloneNotSupportedException {
+		// TODO Apéndice de método generado automáticamente
+		return new Celda(capacidad);
+	}
 
 	/**
 	 * Incrementa el caudal en uno, siempre que no se pase de la capacidad
@@ -141,49 +145,11 @@ public class Celda {
 	
 	// METODOS OBJECT
 	
-	@Override
-	public Celda clone(){
-		return new Celda();
-	}
 	
 	public String toString(){
 		
 		return getClass().getName() + "[ Capacidad: " + capacidad + " // Caudal: " + caudal +
-		" // Vecinas: " + vecinas + " // PosicionX: " + this.posicion.getX() + " "
-				+ "// PosicionY: " + posicion.getY() + " ]";
-	}
-	
-	public int hashcode (){
-		
-		int primo= 31 ;
-		int result =1;
-		
-		result=result * primo + posicion.getX();
-		result=result * primo + posicion.getY();
-		result=result * primo + capacidad;
-		result=result * primo + caudal;
-		// result=result * primo + vecinas;  NO SE PORQUE NO ME DEJA
-		
-		return result;
-	}
-	
-	public boolean equals(Object obj){
-		
-		if (obj == null){
-			return false;
-		}
-		if (obj == this){
-			return true;
-		}
-		if (this.getClass() != obj.getClass()){
-			return false;
-		}
-		
-		Celda burbuja = (Celda) obj;
-		
-		return this.capacidad == (burbuja.capacidad) && this.caudal == (burbuja.caudal)
-		&& this.posicion == (burbuja.posicion) && this.vecinas == (burbuja.vecinas);
-	
+		" // Vecinas: " + vecinas + " // PosicionX: " + this.posicion + " ]";
 	}
 	
 }

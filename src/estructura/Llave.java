@@ -61,8 +61,14 @@ public class Llave extends Celda {
 	// METODOS OBJECT
 	
 	@Override
-	public Celda clone() {
+	public Llave clone() {
 		return new Llave();
+	}
+
+	@Override
+	public String toString() {
+		return "Llave [abierta=" + abierta + ", toString()=" + super.toString()
+				+ "]";
 	}
 	
 

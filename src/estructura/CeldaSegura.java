@@ -20,7 +20,7 @@ public class CeldaSegura extends Celda {
 	// METODOS OBJECT
 	
 	@Override
-	public Celda clone() {
+	public CeldaSegura clone() {
 		return new CeldaSegura();
 	}
 }

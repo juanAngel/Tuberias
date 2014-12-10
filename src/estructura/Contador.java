@@ -43,4 +43,16 @@ public class Contador extends Celda{
 		return incCaudal;
 	}
 
+	@Override
+	public Contador clone() {
+		return new Contador();
+	}
+
+	@Override
+	public String toString() {
+		return "Contador [incCaudal=" + incCaudal + ", toString()="
+				+ super.toString() + "]";
+	}
+	
+
 }
