@@ -34,7 +34,7 @@ public abstract class Bomba extends Entidad {
 	@Override
 	public void turno() {
 		// TODO Apéndice de método generado automáticamente
-		turnoActual = (turnoActual+1)%retardo;
+		turnoActual = (turnoActual+1)%(retardo+1);
 		if (turnoActual == 0) {
 			turnoBomba();
 		}

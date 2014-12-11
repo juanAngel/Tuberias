@@ -30,8 +30,7 @@ public class BombaInyec extends Bomba {
 	 */
 	@Override
 	protected void turnoBomba() {
-		// TODO Apéndice de método generado automáticamente
-
+		getCelda().agregarAgua();
 	}
 
 }

@@ -37,18 +37,26 @@ public abstract class Entidad {
 	}
 	
 	public Celda getCelda(){
-		
 		return tuberia==null?null:tuberia.getCelda(posActual);
 	}
 	
 	// METODOS
-	
+
 	public void mover(Direccion d){
 		if(inTuberia()){
 			Celda siguienteCelda = tuberia.getCelda(posActual.adyacente(d));
 			if(siguienteCelda != null){
 				setPosActual(siguienteCelda.getPosicion());
 			}
+		}
+	}
+	public void moverAleatorio(){
+		if(inTuberia()){
+			Celda siguienteCelda = null;
+			while (siguienteCelda == null) {
+				siguienteCelda = getCelda().getVecina(Direccion.aleatoria());
+			}
+			setPosActual(siguienteCelda.getPosicion());
 		}
 	}
 

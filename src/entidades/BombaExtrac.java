@@ -31,8 +31,7 @@ public class BombaExtrac extends Bomba {
 	 */
 	@Override
 	protected void turnoBomba() {
-		// TODO Apéndice de método generado automáticamente
-
+		getCelda().extraerAgua();
 	}
 
 }

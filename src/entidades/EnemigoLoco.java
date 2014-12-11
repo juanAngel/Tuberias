@@ -3,6 +3,8 @@
  */
 package entidades;
 
+import estructura.Llave;
+
 /**
  * @author juan
  *
@@ -12,17 +14,14 @@ public class EnemigoLoco extends Enemigo {
 	/**
 	 * 
 	 */
-	public EnemigoLoco() {
-		// TODO Apéndice de constructor generado automáticamente
-	}
+	public EnemigoLoco() {}
 
 	/* (sin Javadoc)
 	 * @see entidades.Enemigo#movimiento()
 	 */
 	@Override
 	protected void movimiento() {
-		// TODO Apéndice de método generado automáticamente
-
+		moverAleatorio();
 	}
 
 	/* (sin Javadoc)
@@ -30,8 +29,10 @@ public class EnemigoLoco extends Enemigo {
 	 */
 	@Override
 	protected void accion() {
-		// TODO Apéndice de método generado automáticamente
-
+		if (getCelda() instanceof Llave) {
+			Llave llave = (Llave) getCelda();
+			llave.conmutarLlave();
+		}
 	}
 
 }
