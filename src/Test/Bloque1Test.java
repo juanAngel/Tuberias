@@ -44,7 +44,7 @@ public class Bloque1Test {
 		System.out.println("celda2 -> x = " + celda2.getPosicion().getX() + " // y = " + celda2.getPosicion().getY()
 				 + " // caudal = " + celda2.getCaudal() + " // capacidad = " + celda2.getCapacidad());
 		
-		celda2.añadirAgua(); celda2.añadirAgua(); celda2.extraerAgua(); celda2.extraerAgua(); 
+		celda2.agregarAgua(); celda2.agregarAgua(); celda2.extraerAgua(); celda2.extraerAgua(); 
 		
 		System.out.println("celda2 -> x = " + celda2.getPosicion().getX() + " // y = " + celda2.getPosicion().getY()
 				 + " // caudal = " + celda2.getCaudal() + " // capacidad = " + celda2.getCapacidad());

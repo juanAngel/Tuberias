@@ -33,7 +33,7 @@ public class Contador extends Celda{
 		Celda vecina;
 		Direccion direcciones[] = Direccion.values();
 		for(int i = 0;i<direcciones.length;i++){
-			vecina = consultarVecina(direcciones[i]);
+			vecina = getVecina(direcciones[i]);
 			if(vecina != null && vecina != origen)
 				vecina.agregarAgua(this);
 		}

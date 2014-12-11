@@ -6,7 +6,7 @@ import juego.Entidad;
 
 
 /**
- * Esta clase representa la tuberia que no es mas que un grupo de celdas unidas
+ * Esta clase representa la tuberia que no es mas que un grupo de {@link Celda} unidas
  * entre si.
  * 
  * @author Juan Angel Sanchez Lopez - Tomás Gómez Castilla 
@@ -22,6 +22,12 @@ public class Tuberia {
 	
 	// CONSTRUCTOR
 	
+	/**
+	 * Crea una {@link Tuberia}
+	 * @param ancho Indica la altura maxima
+	 * @param alto Indica el ancho maximo
+	 * @param celda Inicial Indica la {@link Posicion} inicial
+	 */
 	public Tuberia(int ancho,int alto,Posicion celdaInicial) {
 		matriz = new Celda[alto][ancho];
 		Celda newCelda = new Celda();
@@ -65,11 +71,11 @@ public class Tuberia {
 					celda.resetVecinas();
 				
 					//seteo la vecindad y la posicion
-					celda.establecerVecina(dirAdy, vecina);
+					celda.setVecina(dirAdy, vecina);
 					celda.setPosicion(pos);
 				}
 				
-				vecina.establecerVecina(dirAdy.opuesta(), celda);
+				vecina.setVecina(dirAdy.opuesta(), celda);
 
 				matriz[pos.getY()][pos.getX()] = celda;
 
@@ -89,8 +95,8 @@ public class Tuberia {
 				celVecina = setVecina(pos,dirAdy);
 				if(celVecina != null){
 					if(celda != null)
-						celda.establecerVecina(dirAdy, celVecina);
-					celVecina.establecerVecina(dirAdy.opuesta(), celda);
+						celda.setVecina(dirAdy, celVecina);
+					celVecina.setVecina(dirAdy.opuesta(), celda);
 				}
 			}
 			

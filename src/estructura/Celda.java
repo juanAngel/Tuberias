@@ -9,6 +9,10 @@ package estructura;
  * 
  */
 
+/**
+ * @author juan
+ * Representa una Celda de la {@link Tuberia}
+ */
 public class Celda {
 	
 	// ATRIBUTOS
@@ -20,44 +24,77 @@ public class Celda {
 	
 	// CONSTRUCTORES
 	
+	/**
+	 * Crea una Celda
+	 * @param capacidad
+	 */
 	public Celda(int capacidad) {
 		this.capacidad = capacidad;
 	}
 	
+	/**
+	 * Crea una Celda con Capacidad por defecto 5
+	 */
 	public Celda() {
 		this(5);
 	}	
 	
 	// METODOS GET Y SET	
 	
+	/**
+	 * @return Posicion de la {@link Celda}
+	 */
 	public Posicion getPosicion() {
 		return posicion;
 	}
 	
+	/**
+	 * @param posicion
+	 */
 	public void setPosicion(Posicion posicion) {
 		this.posicion = posicion;
 	}
 	
+	/**
+	 * @return
+	 */
 	public boolean isSaturada(){
 		return caudal>0 && caudal == capacidad;
 	}
 	
+	/**
+	 * @return
+	 */
 	public boolean isVacia(){
 		return caudal == 0;
 	}
 	
-	void establecerVecina(Direccion dir,Celda celda){
+	/**
+	 * @param dir
+	 * @param celda
+	 */
+	void setVecina(Direccion dir,Celda celda){
 		vecinas[dir.ordinal()] = celda;
 	}
 	
-	Celda consultarVecina(Direccion dir){
+	/**
+	 * @param dir
+	 * @return
+	 */
+	Celda getVecina(Direccion dir){
 		return vecinas[dir.ordinal()];
 	}
 	
+	/**
+	 * @return
+	 */
 	public int getCaudal() {
 		return caudal;
 	}
 
+	/**
+	 * @return Capacidad de la celda
+	 */
 	public int getCapacidad() {
 		return capacidad;
 	}
@@ -97,13 +134,13 @@ public class Celda {
 	/**
 	 * Incrementa el caudal de la celda y si esta saturada se propaga a las vecinas
 	 */
-	public void añadirAgua(){
+	public void agregarAgua(){
 		agregarAgua(null);
 	}
 	
 	/**
 	 * Incrementa el caudal de la celda y si esta saturada se propaga a las vecinas.
-	 * Con la celda de origen
+	 * @param origen Celda de origen
 	 */
 	public void agregarAgua(Celda origen){
 		if(caudal<capacidad){
@@ -112,7 +149,7 @@ public class Celda {
 			Celda vecina;
 			Direccion direcciones[] = Direccion.values();
 			for(int i = 0;i<direcciones.length;i++){
-				vecina = consultarVecina(direcciones[i]);
+				vecina = getVecina(direcciones[i]);
 				if(vecina != null && vecina != origen)
 					vecina.agregarAgua(this);
 			}
@@ -128,6 +165,7 @@ public class Celda {
 	
 	/**
 	 * Decrementa el caudal de la celda y si la la celda esta vacia se propaga.
+	 * @param origen Celda de origen
 	 */
 	public void extraerAgua(Celda origen){
 		if(caudal>0){
@@ -136,7 +174,7 @@ public class Celda {
 			Celda vecina;
 			Direccion direcciones[] = Direccion.values();
 			for(int i = 0;i<direcciones.length;i++){
-				vecina = consultarVecina(direcciones[i]);
+				vecina = getVecina(direcciones[i]);
 				if(vecina != null && vecina != origen)
 					vecina.agregarAgua(this);
 			}
