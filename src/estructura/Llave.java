@@ -36,7 +36,7 @@ public class Llave extends Celda {
 	/**
 	 * Cambia el estado de abierto. De true a false y viceversa.
 	 */
-	public void conmutarAbierta(){
+	public void conmutarLlave(){
 		abierta ^= true;
 	}
 	

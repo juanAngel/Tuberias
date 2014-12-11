@@ -81,7 +81,7 @@ public class Celda {
 	 * @param dir
 	 * @return
 	 */
-	Celda getVecina(Direccion dir){
+	public Celda getVecina(Direccion dir){
 		return vecinas[dir.ordinal()];
 	}
 	
