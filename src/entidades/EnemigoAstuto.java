@@ -38,6 +38,7 @@ public class EnemigoAstuto extends Enemigo {
 				if(actual != null && !actual.isSaturada()){
 					if(i<masCerca){
 						d = Direccion.values()[y];
+						masCerca = i;
 					}
 					i = vision;
 				}
@@ -54,8 +55,10 @@ public class EnemigoAstuto extends Enemigo {
 			for(int i = 0;i<vision && actual != null;++i){
 				actual = actual.getVecina(Direccion.values()[y]);
 				if(actual instanceof Llave){
-					if(i<masCerca){
+					Llave llave = (Llave)actual;
+					if(i<masCerca && !llave.isAbierta()){
 						d = Direccion.values()[y];
+						masCerca = i;
 					}
 					i = vision;
 				}
