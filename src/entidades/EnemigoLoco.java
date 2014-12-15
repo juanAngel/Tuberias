@@ -35,4 +35,10 @@ public class EnemigoLoco extends Enemigo {
 		}
 	}
 
+	@Override
+	public String getImagen() {
+		// TODO Apéndice de método generado automáticamente
+		return "enemigo-azul";
+	}
+
 }

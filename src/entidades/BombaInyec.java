@@ -33,4 +33,10 @@ public class BombaInyec extends Bomba {
 		getCelda().agregarAgua();
 	}
 
+	@Override
+	public String getImagen() {
+		// TODO Apéndice de método generado automáticamente
+		return "inyector";
+	}
+
 }

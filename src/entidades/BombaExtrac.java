@@ -15,7 +15,6 @@ public class BombaExtrac extends Bomba {
 	 */
 	public BombaExtrac() {
 		super();
-		// TODO Apéndice de constructor generado automáticamente
 	}
 
 	/**
@@ -23,7 +22,6 @@ public class BombaExtrac extends Bomba {
 	 */
 	public BombaExtrac(int retardo) {
 		super(retardo);
-		// TODO Apéndice de constructor generado automáticamente
 	}
 
 	/* (sin Javadoc)
@@ -32,6 +30,11 @@ public class BombaExtrac extends Bomba {
 	@Override
 	protected void turnoBomba() {
 		getCelda().extraerAgua();
+	}
+
+	@Override
+	public String getImagen() {
+		return "extractor";
 	}
 
 }

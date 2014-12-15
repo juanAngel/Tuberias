@@ -1,6 +1,5 @@
 package entidades;
 
-import estructura.Celda;
 import estructura.Direccion;
 import estructura.Llave;
 
@@ -8,16 +7,12 @@ public class Jugador extends EntidadViva {
 	private Direccion dirSig = null;
 	private boolean conmutarLLave = false;
 	
-	public Jugador() {
-		// TODO Apéndice de constructor generado automáticamente
-	}
+	public Jugador() {}
 
 	@Override
 	protected void turnoViva() {
 		if(dirSig != null){
-			Celda vecina = getCelda().getVecina(dirSig);
-			if(vecina != null)
-				setPosActual(vecina.getPosicion());
+			mover(dirSig);
 			dirSig = null;
 		}
 		if(conmutarLLave){
@@ -28,6 +23,18 @@ public class Jugador extends EntidadViva {
 			conmutarLLave = false;
 		}
 		
+	}
+	public void solicitudMovimiento(Direccion d) {
+		dirSig = d;
+	}
+	public void actuar(){
+		conmutarLLave = true;
+	}
+	
+	@Override
+	public String getImagen() {
+		// TODO Apéndice de método generado automáticamente
+		return "link Zelda";
 	}
 
 }

@@ -33,9 +33,9 @@ public class EnemigoAstuto extends Enemigo {
 		Celda actual;
 		for(int y = 0;y<Direccion.values().length;y++){
 			actual = getCelda();
-			for(int i = 0;i<vision;++i){
+			for(int i = 0;i<vision && actual != null;++i){
 				actual = actual.getVecina(Direccion.values()[y]);
-				if(!actual.isSaturada()){
+				if(actual != null && !actual.isSaturada()){
 					if(i<masCerca){
 						d = Direccion.values()[y];
 					}
@@ -51,7 +51,7 @@ public class EnemigoAstuto extends Enemigo {
 		Celda actual;
 		for(int y = 0;y<Direccion.values().length;y++){
 			actual = getCelda();
-			for(int i = 0;i<vision;++i){
+			for(int i = 0;i<vision && actual != null;++i){
 				actual = actual.getVecina(Direccion.values()[y]);
 				if(actual instanceof Llave){
 					if(i<masCerca){
@@ -70,6 +70,12 @@ public class EnemigoAstuto extends Enemigo {
 			Llave llave = (Llave) getCelda();
 			llave.setAbierta(true);
 		}
+	}
+
+	@Override
+	public String getImagen() {
+		// TODO Apéndice de método generado automáticamente
+		return "enemigo-rojo";
 	}
 
 }
