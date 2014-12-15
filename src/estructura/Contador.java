@@ -53,6 +53,14 @@ public class Contador extends Celda{
 		return "Contador [incCaudal=" + incCaudal + ", toString()="
 				+ super.toString() + "]";
 	}
+
+	/* (sin Javadoc)
+	 * @see estructura.Celda#getImagen()
+	 */
+	@Override
+	public String getImagen() {
+		return "contador";
+	}
 	
 
 }

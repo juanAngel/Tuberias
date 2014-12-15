@@ -1,8 +1,16 @@
 package estructura;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.CopyOnWriteArraySet;
 
+import tuberias.vista.Dibujable;
+import entidades.Jugador;
 import juego.Entidad;
+import juego.EstadoTuberia;
 
 
 /**
@@ -16,9 +24,14 @@ import juego.Entidad;
 public class Tuberia {
 	
 	// ATRIBUTOS
-	
+	private EstadoTuberia estado = EstadoTuberia.NO_INICIADO;
+	private Posicion posInicial;
 	private Celda matriz[][];
-	private Set<Entidad> entidades;
+	private Jugador jugador;
+
+	private Set<Entidad> entidades = new CopyOnWriteArraySet<Entidad>();
+	private Set<Contador> contadores = new HashSet<Contador>();
+	private ArrayList<Dibujable> dibujables = new ArrayList<Dibujable>();
 	
 	// CONSTRUCTOR
 	
@@ -28,14 +41,34 @@ public class Tuberia {
 	 * @param alto Indica el ancho maximo
 	 * @param celda Inicial Indica la {@link Posicion} inicial
 	 */
-	public Tuberia(int ancho,int alto,Posicion celdaInicial) {
+	public Tuberia(int ancho,int alto,Posicion posCeldaInicial) {
 		matriz = new Celda[alto][ancho];
 		Celda newCelda = new Celda();
 		//Pongo la celda inicial
-		newCelda.setPosicion(celdaInicial);
-		matriz[celdaInicial.getY()][celdaInicial.getX()] = newCelda;
+		this.posInicial = posCeldaInicial;
+		newCelda.setPosicion(posCeldaInicial);
+		matriz[posCeldaInicial.getY()][posCeldaInicial.getX()] = newCelda;
+		dibujables.add(newCelda);
 	}
 	
+	public void arrancar(){
+		assert(estado == EstadoTuberia.NO_INICIADO);
+		estado = EstadoTuberia.ARRANCADA;
+	}
+	public void parar(){
+		assert(estado == EstadoTuberia.ARRANCADA);
+		estado = EstadoTuberia.FINALIZADA;
+	}
+	public void actualizar(){
+		for (Entidad entidad : entidades) {
+			entidad.turno();
+		}
+	}
+	public void setJugador(Jugador j){
+		assert(estado == EstadoTuberia.NO_INICIADO);
+		jugador = j;
+		insertarEntidad(jugador,posInicial);
+	}
 	// METODOS GET Y SET
 
 	public int getAncho(){
@@ -73,6 +106,11 @@ public class Tuberia {
 					//seteo la vecindad y la posicion
 					celda.setVecina(dirAdy, vecina);
 					celda.setPosicion(pos);
+					if (celda instanceof Contador) {
+						Contador contador = (Contador) celda;
+						contadores.add(contador);
+					}
+					dibujables.add(0,celda);
 				}
 				
 				vecina.setVecina(dirAdy.opuesta(), celda);
@@ -82,9 +120,17 @@ public class Tuberia {
 				status = true;
 			}
 		}else{
+			Celda oldCelda = matriz[pos.getY()][pos.getX()];
 			if(celda != null){
 				celda.resetVecinas();
 				celda.setPosicion(pos);
+				
+
+				if (celda instanceof Contador) {
+					Contador contador = (Contador) celda;
+					contadores.add(contador);
+				}
+				dibujables.add(0,celda);
 			}
 			
 			Direccion direciones[] = Direccion.values();
@@ -92,7 +138,7 @@ public class Tuberia {
 			//Seteo la vecindad de todos los alrededores
 			for(int i = 0;i<direciones.length;i++){
 				dirAdy = direciones[i];
-				celVecina = setVecina(pos,dirAdy);
+				celVecina = getVecina(pos,dirAdy);
 				if(celVecina != null){
 					if(celda != null)
 						celda.setVecina(dirAdy, celVecina);
@@ -100,7 +146,18 @@ public class Tuberia {
 				}
 			}
 			
+
+			if (celda instanceof Contador) {
+				Contador contador = (Contador) celda;
+				contadores.add(contador);
+			}
 			matriz[pos.getY()][pos.getX()] = celda;
+			dibujables.remove(oldCelda);
+			if (oldCelda instanceof Contador) {
+				Contador contador = (Contador) oldCelda;
+				contadores.remove(contador);
+			}
+			
 			status = true;
 		}
 		return status;
@@ -110,13 +167,27 @@ public class Tuberia {
 		return matriz[pos.getY()][pos.getX()];
 	}
 	
-	public Celda setVecina(Posicion pos,Direccion dir){
+	public Celda getVecina(Posicion pos,Direccion dir){
 		return getCelda(pos.adyacente(dir));
 	}
 	
 
 	// METODOS
 	
+	/**
+	 * @return el estado
+	 */
+	public EstadoTuberia getEstado() {
+		return estado;
+	}
+
+	/**
+	 * @param estado el estado a establecer
+	 *//*
+	public void setEstado(EstadoTuberia estado) {
+		this.estado = estado;
+	}*/
+
 	public boolean hayVecina(Posicion pos,Direccion dir){
 		return getCelda(pos.adyacente(dir)) != null;
 	}
@@ -138,13 +209,36 @@ public class Tuberia {
 			e.setTuberia(this);
 			e.setPosActual(p);
 			entidades.add(e);
+			dibujables.add(dibujables.size(),e);
 		}
 	}
 	
 	public void sacarEntidad(Entidad e){
 		if (entidades.contains(e)) {
-			e.setPosActual(null);
-			e.setTuberia(null);
+			synchronized (dibujables) {
+				dibujables.remove(e);
+				entidades.remove(e);
+				//e.setPosActual(null);
+				//e.setTuberia(null);
+			}
 		}
 	}
+
+	/**
+	 * @return el dibujables
+	 */
+	public Collection<Dibujable> getDibujables() {
+		synchronized (dibujables) {
+			return new CopyOnWriteArrayList<Dibujable>(dibujables);
+		}
+	}
+
+	/**
+	 * @param dibujables el dibujables a establecer
+	 */
+	/*
+	public void setDibujables(TreeSet<Dibujable> dibujables) {
+		this.dibujables = new TreeSet<Dibujable>(dibujables);
+	}*/
+	
 }

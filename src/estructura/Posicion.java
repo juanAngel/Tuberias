@@ -13,7 +13,7 @@ public class Posicion {
 	
 	// ATRIBUTOS
 	
-	private int x,y;
+	final private int x,y;
 	
 	// CONSTRUCTORES
 

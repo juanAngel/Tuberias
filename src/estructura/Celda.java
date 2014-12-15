@@ -1,5 +1,7 @@
 package estructura;
 
+import tuberias.vista.Dibujable;
+
 
 /**
  * Esta clase representa los componentes basicos de las tuberias, como las posiciones
@@ -13,7 +15,7 @@ package estructura;
  * @author juan
  * Representa una Celda de la {@link Tuberia}
  */
-public class Celda {
+public class Celda implements Dibujable{
 	
 	// ATRIBUTOS
 	
@@ -67,6 +69,11 @@ public class Celda {
 	 */
 	public boolean isVacia(){
 		return caudal == 0;
+	}
+	public int getFactorSaturacion(){
+		if(capacidad==0)
+			return 0;
+		return (caudal*100)/capacidad;
 	}
 	
 	/**
@@ -176,7 +183,7 @@ public class Celda {
 			for(int i = 0;i<direcciones.length;i++){
 				vecina = getVecina(direcciones[i]);
 				if(vecina != null && vecina != origen)
-					vecina.agregarAgua(this);
+					vecina.extraerAgua(this);
 			}
 		}
 	}
@@ -188,6 +195,26 @@ public class Celda {
 		
 		return getClass().getName() + "[ Capacidad: " + capacidad + " // Caudal: " + caudal +
 		" // Vecinas: " + vecinas + " // PosicionX: " + this.posicion + " ]";
+	}
+
+	@Override
+	public String getImagen() {
+		int saturacion = getFactorSaturacion();
+		return saturacion<50?"celda-vacia":saturacion==100?"celda-llena":"celda-medio";
+	}
+
+	@Override
+	public int getPosicionX() {
+		assert(posicion != null);
+		
+		return posicion.getX();
+	}
+
+	@Override
+	public int getPosicionY() {
+		assert(posicion != null);
+		
+		return posicion.getY();
 	}
 	
 }

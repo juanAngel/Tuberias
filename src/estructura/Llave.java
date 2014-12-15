@@ -70,6 +70,23 @@ public class Llave extends Celda {
 		return "Llave [abierta=" + abierta + ", toString()=" + super.toString()
 				+ "]";
 	}
+
+	/* (sin Javadoc)
+	 * @see estructura.Celda#getImagen()
+	 */
+	@Override
+	public String getImagen() {
+		String result = "";
+		int saturacion = getFactorSaturacion();
+		if(abierta){
+			result = saturacion<50?"llave-vacia-abierta":saturacion==100?"llave-llena-abierta":"llave-medio-abierta";
+		}else{
+			result = saturacion<50?"llave-vacia-cerrada":saturacion==100?"llave-llena-cerrada":"llave-medio-cerrada";
+		}
+		
+		
+		return result;
+	}
 	
 
 }

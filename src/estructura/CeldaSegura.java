@@ -13,6 +13,7 @@ public class CeldaSegura extends Celda {
 	
 	// CONSTRUCTORES
 	
+
 	public CeldaSegura() {
 		super(0);
 	}
@@ -22,5 +23,13 @@ public class CeldaSegura extends Celda {
 	@Override
 	public CeldaSegura clone() {
 		return new CeldaSegura();
+	}
+	/* (sin Javadoc)
+	 * @see estructura.Celda#getImagen()
+	 */
+	@Override
+	public String getImagen() {
+		// TODO Apéndice de método generado automáticamente
+		return "celda-segura";
 	}
 }
