@@ -52,7 +52,7 @@ public class Bloque1Test {
 		// PRUEBA CLASE TUBERIAS
 		
 		Tuberia tuberia1 = new Tuberia(5,6,posicion1);
-		Tuberia tuberia2 = new Tuberia(7,7,posicion2);
+		//Tuberia tuberia2 = new Tuberia(7,7,posicion2);
 		
 		System.out.println("Tuberia1 -> ancho =  " + tuberia1.getAlto() + " // alto = " + tuberia1.getAncho());		
 		

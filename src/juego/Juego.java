@@ -3,8 +3,6 @@
  */
 package juego;
 
-import java.awt.Color;
-
 import tuberias.vista.Pantalla;
 
 /**
