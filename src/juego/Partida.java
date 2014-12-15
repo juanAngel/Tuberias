@@ -126,12 +126,18 @@ public class Partida implements IControlador{
 		tuberia.setCelda(new Contador(),new Posicion(DEFALT_INICIAL_POS.getX()+2,DEFALT_INICIAL_POS.getY()+9));
 		tuberia.setCelda(new Llave(),new Posicion(DEFALT_INICIAL_POS.getX()+2,DEFALT_INICIAL_POS.getY()-1));
 		tuberia.setCelda(new Llave(),new Posicion(DEFALT_INICIAL_POS.getX()+4,DEFALT_INICIAL_POS.getY()));
+		
+		tuberia.setCelda(new Llave(),new Posicion(DEFALT_INICIAL_POS.getX()+2,DEFALT_INICIAL_POS.getY()+6));
+		tuberia.setCelda(new Llave(),new Posicion(DEFALT_INICIAL_POS.getX()+3,DEFALT_INICIAL_POS.getY()+5));
+
+		tuberia.setCelda(new Contador(),new Posicion(DEFALT_INICIAL_POS.getX()+8,DEFALT_INICIAL_POS.getY()+5));
 
 		tuberia.insertarEntidad(new BombaInyec(1), new Posicion(DEFALT_INICIAL_POS.getX()+2,DEFALT_INICIAL_POS.getY()-1));
+		tuberia.insertarEntidad(new BombaInyec(0), new Posicion(DEFALT_INICIAL_POS.getX()+2,DEFALT_INICIAL_POS.getY()+5));
 		tuberia.insertarEntidad(new BombaExtrac(3), new Posicion(DEFALT_INICIAL_POS.getX()+4,DEFALT_INICIAL_POS.getY()));
 
 		tuberia.insertarEntidad(new EnemigoLoco(), new Posicion(DEFALT_INICIAL_POS.getX()+1,DEFALT_INICIAL_POS.getY()));
-		tuberia.insertarEntidad(new EnemigoAstuto(2), new Posicion(DEFALT_INICIAL_POS.getX()+2,DEFALT_INICIAL_POS.getY()+5));
+		tuberia.insertarEntidad(new EnemigoAstuto(4), new Posicion(DEFALT_INICIAL_POS.getX()+2,DEFALT_INICIAL_POS.getY()+3));
 		
 		
 		tuberia.arrancar();
