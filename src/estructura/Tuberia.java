@@ -28,6 +28,7 @@ public class Tuberia {
 	private Posicion posInicial;
 	private Celda matriz[][];
 	private Jugador jugador;
+	private long inicioTimeStamp;
 
 	private Set<Entidad> entidades = new CopyOnWriteArraySet<Entidad>();
 	private Set<Contador> contadores = new HashSet<Contador>();
@@ -54,6 +55,7 @@ public class Tuberia {
 	public void arrancar(){
 		assert(estado == EstadoTuberia.NO_INICIADO);
 		estado = EstadoTuberia.ARRANCADA;
+		inicioTimeStamp = System.currentTimeMillis();
 	}
 	public void parar(){
 		assert(estado == EstadoTuberia.ARRANCADA);
@@ -77,6 +79,18 @@ public class Tuberia {
 	
 	public int getAlto(){
 		return matriz.length;
+	}
+	public long getTranscurrido(){
+		assert(estado == EstadoTuberia.ARRANCADA);
+		return (System.currentTimeMillis()-inicioTimeStamp)/1000;
+	}
+	public long getAguaEscapada() {
+		long result = 0;
+		for (Contador contador : contadores) {
+			result += contador.getIncCaudal();
+		}
+		
+		return result;
 	}
 	
 	public boolean setCelda(Celda celda,Posicion pos){
