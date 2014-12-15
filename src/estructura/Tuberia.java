@@ -10,7 +10,6 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import tuberias.vista.Dibujable;
 import entidades.Jugador;
 import juego.Entidad;
-import juego.EstadoTuberia;
 
 
 /**
@@ -28,7 +27,9 @@ public class Tuberia {
 	private Posicion posInicial;
 	private Celda matriz[][];
 	private Jugador jugador;
+	
 	private long inicioTimeStamp;
+	final private long maximoAgua;
 
 	private Set<Entidad> entidades = new CopyOnWriteArraySet<Entidad>();
 	private Set<Contador> contadores = new HashSet<Contador>();
@@ -36,13 +37,17 @@ public class Tuberia {
 	
 	// CONSTRUCTOR
 	
+	public Tuberia(int ancho,int alto,Posicion posCeldaInicial){
+		this(ancho, alto, posCeldaInicial, 200);
+	}
 	/**
 	 * Crea una {@link Tuberia}
 	 * @param ancho Indica la altura maxima
 	 * @param alto Indica el ancho maximo
 	 * @param celda Inicial Indica la {@link Posicion} inicial
 	 */
-	public Tuberia(int ancho,int alto,Posicion posCeldaInicial) {
+	public Tuberia(int ancho,int alto,Posicion posCeldaInicial,long maxAgua) {
+		maximoAgua = maxAgua;
 		matriz = new Celda[alto][ancho];
 		Celda newCelda = new Celda();
 		//Pongo la celda inicial
@@ -84,6 +89,15 @@ public class Tuberia {
 	public long getTranscurrido(){
 		assert(estado == EstadoTuberia.ARRANCADA);
 		return (System.currentTimeMillis()-inicioTimeStamp)/1000;
+	}
+	/**
+	 * @return el maximoAgua
+	 */
+	public long getMaximoAgua() {
+		return maximoAgua;
+	}
+	public long getAguaRestante() {
+		return getMaximoAgua()-getAguaEscapada();
 	}
 	public long getAguaEscapada() {
 		long result = 0;

@@ -13,6 +13,7 @@ import entidades.Jugador;
 import estructura.CeldaSegura;
 import estructura.Contador;
 import estructura.Direccion;
+import estructura.EstadoTuberia;
 import estructura.Llave;
 import estructura.Posicion;
 import estructura.Tuberia;
@@ -48,8 +49,12 @@ public class Partida implements IControlador{
 	public void actualizar() {
 		assert(tuberia != null);
 		tuberia.actualizar();
+		long aguaRestante = tuberia.getAguaRestante();
+		if(aguaRestante <= 0){
+			tuberia.parar();
+		}
 		StringBuilder stateString = new StringBuilder();
-		stateString.append("Restante ").append(tuberia.getAguaEscapada())
+		stateString.append("Restante ").append(aguaRestante)
 				.append(" Tiemo ").append(tuberia.getTranscurrido());
 		
 		screen.setBarraEstado(stateString.toString());
