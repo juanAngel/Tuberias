@@ -164,7 +164,12 @@ public class Tuberia {
 	}
 	
 	public Celda getCelda(Posicion pos){
-		return matriz[pos.getY()][pos.getX()];
+		Celda celda = null;
+		if(pos.getX()>= 0 && pos.getY()>= 0 
+				&& pos.getX()< getAncho() && pos.getY()<getAlto()){
+			celda = matriz[pos.getY()][pos.getX()];
+		}
+		return celda;
 	}
 	
 	public Celda getVecina(Posicion pos,Direccion dir){
