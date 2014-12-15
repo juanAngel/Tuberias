@@ -60,6 +60,7 @@ public class Tuberia {
 	public void parar(){
 		assert(estado == EstadoTuberia.ARRANCADA);
 		estado = EstadoTuberia.FINALIZADA;
+		System.out.println("FIN PARTIDA");
 	}
 	public void actualizar(){
 		for (Entidad entidad : entidades) {
@@ -234,6 +235,8 @@ public class Tuberia {
 	
 	public void sacarEntidad(Entidad e){
 		if (entidades.contains(e)) {
+			if(jugador == e)
+				parar();
 			synchronized (dibujables) {
 				dibujables.remove(e);
 				entidades.remove(e);

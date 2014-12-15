@@ -25,9 +25,9 @@ import tuberias.vista.IPantalla;
  *
  */
 public class Partida implements IControlador{
-	Jugador jugador = null;
-	IPantalla screen = null;
-	Tuberia tuberia = null;
+	private Jugador jugador = null;
+	private IPantalla screen = null;
+	private Tuberia tuberia = null;
 	
 	public static final int DEFAULT_ANCHO = 25;
 	public static final int DEFAULT_ALTO = 12;
@@ -36,7 +36,6 @@ public class Partida implements IControlador{
 	 * 
 	 */
 	public Partida() {
-		// TODO Apéndice de constructor generado automáticamente
 	}
 
 	@Override
@@ -49,6 +48,13 @@ public class Partida implements IControlador{
 	public void actualizar() {
 		assert(tuberia != null);
 		tuberia.actualizar();
+		StringBuilder stateString = new StringBuilder();
+		stateString.append("Restante ").append(tuberia.getAguaEscapada())
+				.append(" Tiemo ").append(tuberia.getTranscurrido());
+		
+		screen.setBarraEstado(stateString.toString());
+		if(tuberia.getEstado() == EstadoTuberia.FINALIZADA)
+			screen.abrirDialogo("Partida", "Partida Finalizada");;
 	}
 
 	@Override
@@ -116,8 +122,8 @@ public class Partida implements IControlador{
 		tuberia.setCelda(new Llave(),new Posicion(DEFALT_INICIAL_POS.getX()+2,DEFALT_INICIAL_POS.getY()-1));
 		tuberia.setCelda(new Llave(),new Posicion(DEFALT_INICIAL_POS.getX()+4,DEFALT_INICIAL_POS.getY()));
 
-		tuberia.insertarEntidad(new BombaInyec(2), new Posicion(DEFALT_INICIAL_POS.getX()+2,DEFALT_INICIAL_POS.getY()-1));
-		tuberia.insertarEntidad(new BombaExtrac(2), new Posicion(DEFALT_INICIAL_POS.getX()+4,DEFALT_INICIAL_POS.getY()));
+		tuberia.insertarEntidad(new BombaInyec(1), new Posicion(DEFALT_INICIAL_POS.getX()+2,DEFALT_INICIAL_POS.getY()-1));
+		tuberia.insertarEntidad(new BombaExtrac(3), new Posicion(DEFALT_INICIAL_POS.getX()+4,DEFALT_INICIAL_POS.getY()));
 
 		tuberia.insertarEntidad(new EnemigoLoco(), new Posicion(DEFALT_INICIAL_POS.getX()+1,DEFALT_INICIAL_POS.getY()));
 		tuberia.insertarEntidad(new EnemigoAstuto(2), new Posicion(DEFALT_INICIAL_POS.getX()+2,DEFALT_INICIAL_POS.getY()+5));
