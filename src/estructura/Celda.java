@@ -93,7 +93,7 @@ public class Celda implements Dibujable{
 	}
 	
 	/**
-	 * @return
+	 * @return El caudal de la Celda
 	 */
 	public int getCaudal() {
 		return caudal;

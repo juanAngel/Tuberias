@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 import tuberias.vista.Dibujable;
@@ -50,7 +49,7 @@ public class Tuberia {
 	 * Crea una {@link Tuberia}
 	 * @param ancho Indica la altura maxima
 	 * @param alto Indica el ancho maximo
-	 * @param celda Inicial Indica la {@link Posicion} inicial
+	 * @param posCeldaInicial Indica la {@link Posicion} inicial
 	 * @param maxAgua Maxima cantidad de agua que se permite escapar de la tuberia
 	 */
 	public Tuberia(int ancho,int alto,Posicion posCeldaInicial,long maxAgua) {
@@ -342,8 +341,9 @@ public class Tuberia {
 	/**
 	 * @return Una coleccion de {@link Dibujable} que perite representar la {@link Tuberia} y su contenido
 	 */
+	@SuppressWarnings("unchecked")
 	public Collection<Dibujable> getDibujables() {
-		return /*new ArrayList<Dibujable>*/(dibujables);
+		return (Collection<Dibujable>) dibujables.clone();
 	}
 	
 }

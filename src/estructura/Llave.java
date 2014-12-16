@@ -24,13 +24,14 @@ public class Llave extends Celda {
 	// METODOS GET Y SET
 
 	/**
-	 * @return
+	 * @return True si esta abierta
 	 */
 	public boolean isAbierta() {
 		return abierta;
 	}
 
 	/**
+	 * Establece el estado de abierta o cerrada de la Llave
 	 * @param abierta
 	 */
 	public void setAbierta(boolean abierta) {
