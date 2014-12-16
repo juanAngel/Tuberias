@@ -10,11 +10,6 @@ import tuberias.vista.Dibujable;
  * @author Juan Angel Sanchez Lopez - Tomás Gómez Castilla 
  * 
  */
-
-/**
- * @author juan
- * Representa una Celda de la {@link Tuberia}
- */
 public class Celda implements Dibujable{
 	
 	// ATRIBUTOS
@@ -51,6 +46,7 @@ public class Celda implements Dibujable{
 	}
 	
 	/**
+	 * Establece la posicion de la Celda
 	 * @param posicion
 	 */
 	public void setPosicion(Posicion posicion) {
@@ -58,18 +54,21 @@ public class Celda implements Dibujable{
 	}
 	
 	/**
-	 * @return
+	 * @return True si la celda esta saturada
 	 */
 	public boolean isSaturada(){
 		return caudal>0 && caudal == capacidad;
 	}
 	
 	/**
-	 * @return
+	 * @return True si la Celda esta vacia
 	 */
 	public boolean isVacia(){
 		return caudal == 0;
 	}
+	/**
+	 * @return el porcentaje de llenado de la celda
+	 */
 	public int getFactorSaturacion(){
 		if(capacidad==0)
 			return 0;
@@ -77,7 +76,8 @@ public class Celda implements Dibujable{
 	}
 	
 	/**
-	 * @param dir
+	 * Establece la vecindad de un par de Celdas
+	 * @param dir Direccion en la que esta la Celda vecina
 	 * @param celda
 	 */
 	void setVecina(Direccion dir,Celda celda){
@@ -85,8 +85,8 @@ public class Celda implements Dibujable{
 	}
 	
 	/**
-	 * @param dir
-	 * @return
+	 * @param dir Direccion de la vecina
+	 * @return Una Celda que es vecina o Null en caso contrario
 	 */
 	public Celda getVecina(Direccion dir){
 		return vecinas[dir.ordinal()];
@@ -191,18 +191,27 @@ public class Celda implements Dibujable{
 	// METODOS OBJECT
 	
 	
+	/* (sin Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString(){
 		
 		return getClass().getName() + "[ Capacidad: " + capacidad + " // Caudal: " + caudal +
 		" // Vecinas: " + vecinas + " // PosicionX: " + this.posicion + " ]";
 	}
 
+	/* (sin Javadoc)
+	 * @see tuberias.vista.Dibujable#getImagen()
+	 */
 	@Override
 	public String getImagen() {
 		int saturacion = getFactorSaturacion();
 		return saturacion<50?"celda-vacia":saturacion==100?"celda-llena":"celda-medio";
 	}
 
+	/* (sin Javadoc)
+	 * @see tuberias.vista.Dibujable#getPosicionX()
+	 */
 	@Override
 	public int getPosicionX() {
 		assert(posicion != null);
@@ -210,6 +219,9 @@ public class Celda implements Dibujable{
 		return posicion.getX();
 	}
 
+	/* (sin Javadoc)
+	 * @see tuberias.vista.Dibujable#getPosicionY()
+	 */
 	@Override
 	public int getPosicionY() {
 		assert(posicion != null);

@@ -37,6 +37,12 @@ public class Tuberia {
 	
 	// CONSTRUCTOR
 	
+	/**
+	 * Construlle una tuberia con los parametros indicados
+	 * @param ancho de la tuberia
+	 * @param alto de la tuberia
+	 * @param posCeldaInicial {@link Posicion} de la primera {@linkplain Celda} de la {@linkplain Tuberia}
+	 */
 	public Tuberia(int ancho,int alto,Posicion posCeldaInicial){
 		this(ancho, alto, posCeldaInicial, 200);
 	}
@@ -45,6 +51,7 @@ public class Tuberia {
 	 * @param ancho Indica la altura maxima
 	 * @param alto Indica el ancho maximo
 	 * @param celda Inicial Indica la {@link Posicion} inicial
+	 * @param maxAgua Maxima cantidad de agua que se permite escapar de la tuberia
 	 */
 	public Tuberia(int ancho,int alto,Posicion posCeldaInicial,long maxAgua) {
 		maximoAgua = maxAgua;
@@ -57,35 +64,65 @@ public class Tuberia {
 		dibujables.add(newCelda);
 	}
 	
+	/**
+	 * Pone en estado de {@link EstadoTuberia#ARRANCADA} la {@linkplain Tuberia}
+	 * Solo se permite su uso si se estaba en estado de {@link EstadoTuberia#NO_INICIADO}
+	 */
 	public void arrancar(){
 		assert(estado == EstadoTuberia.NO_INICIADO);
+		if(estado != EstadoTuberia.NO_INICIADO)
+			throw new IllegalStateException();
 		estado = EstadoTuberia.ARRANCADA;
 		inicioTimeStamp = System.currentTimeMillis();
 	}
+	/**
+	 * Pone en estado de {@link EstadoTuberia#FINALIZADA} la {@linkplain Tuberia}
+	 * Solo se permite su uso si se estaba en estado de {@link EstadoTuberia#ARRANCADA}
+	 */
 	public void parar(){
 		assert(estado == EstadoTuberia.ARRANCADA);
+		if(estado != EstadoTuberia.ARRANCADA)
+			throw new IllegalStateException();
 		estado = EstadoTuberia.FINALIZADA;
 		System.out.println("FIN PARTIDA");
 	}
+	/**
+	 * Ejecuta el {@linkplain Entidad#turno()} de las entidades de la tuberia
+	 */
 	public void actualizar(){
 		for (Entidad entidad : entidades) {
 			entidad.turno();
 		}
 	}
+	/**
+	 * Establece el {@linkplain Jugador}
+	 * @param j Jugador a asignar
+	 */
 	public void setJugador(Jugador j){
 		assert(estado == EstadoTuberia.NO_INICIADO);
+		if(estado != EstadoTuberia.NO_INICIADO)
+			throw new IllegalStateException();
 		jugador = j;
 		insertarEntidad(jugador,posInicial);
 	}
 	// METODOS GET Y SET
 
+	/**
+	 * @return el Ancho de la tuberia
+	 */
 	public int getAncho(){
 		return matriz[0].length;
 	}
 	
+	/**
+	 * @return el Alto de la tuberia
+	 */
 	public int getAlto(){
 		return matriz.length;
 	}
+	/**
+	 * @return El tiempo en segundos desde que la tuberia esta en {@link EstadoTuberia#ARRANCADA}
+	 */
 	public long getTranscurrido(){
 		assert(estado == EstadoTuberia.ARRANCADA);
 		return (System.currentTimeMillis()-inicioTimeStamp)/1000;
@@ -96,9 +133,16 @@ public class Tuberia {
 	public long getMaximoAgua() {
 		return maximoAgua;
 	}
+	/**
+	 * @return El agua que queda por salir
+	 */
 	public long getAguaRestante() {
-		return getMaximoAgua()-getAguaEscapada();
+		long restante = getMaximoAgua()-getAguaEscapada();
+		return restante<0?0:restante;
 	}
+	/**
+	 * @return El agua que a salido
+	 */
 	public long getAguaEscapada() {
 		long result = 0;
 		for (Contador contador : contadores) {
@@ -108,6 +152,12 @@ public class Tuberia {
 		return result;
 	}
 	
+	/**
+	 * Pone una celda en la posicion indicada. La posicion indicada tiene que tener vecina
+	 * @param celda Celda a esablecer en la tuberia
+	 * @param pos Posicion donde se pondra la nueva celda
+	 * @return TRUE si se pudo establecer la celda en la posicion indicada, FALSE en caso contrario
+	 */
 	public boolean setCelda(Celda celda,Posicion pos){
 		boolean status = false;
 		Direccion dirAdy = null;
@@ -192,6 +242,10 @@ public class Tuberia {
 		return status;
 	}
 	
+	/**
+	 * @param pos Posicion de la celda deseada
+	 * @return La {@link Celda} que hay en la posicion indicada y null si no la hay
+	 */
 	public Celda getCelda(Posicion pos){
 		Celda celda = null;
 		if(pos.getX()>= 0 && pos.getY()>= 0 
@@ -201,6 +255,12 @@ public class Tuberia {
 		return celda;
 	}
 	
+	/**
+	 * Devuelve la celda vecina que hay en la posicion pos y la direccion dir
+	 * @param pos Posicion de la delda de donde se quiere la vecina
+	 * @param dir Direcion de la vecina
+	 * @return la {@link Celda} vecina
+	 */
 	public Celda getVecina(Posicion pos,Direccion dir){
 		return getCelda(pos.adyacente(dir));
 	}
@@ -209,7 +269,7 @@ public class Tuberia {
 	// METODOS
 	
 	/**
-	 * @return el estado
+	 * @return el {@linkplain EstadoTuberia} de la tuberia
 	 */
 	public EstadoTuberia getEstado() {
 		return estado;
@@ -222,21 +282,38 @@ public class Tuberia {
 		this.estado = estado;
 	}*/
 
+	/**
+	 * @param pos Posicion de la delda de donde se quiere la vecina
+	 * @param dir Direcion de la vecina
+	 * @return TRUE si existe una Celda vecina en la posicion pos y direccion dir
+	 */
 	public boolean hayVecina(Posicion pos,Direccion dir){
 		return getCelda(pos.adyacente(dir)) != null;
 	}
 	
+	/**
+	 * Crea un tubo, que es una sucesion de Celdas en linea recta
+	 * @param pos posicion inicial de el tubo
+	 * @param dir Direccion hacia la que crece
+	 * @param largo del tubo
+	 */
 	public void crearTubo(Posicion pos,Direccion dir,int largo){
 		Posicion posFinal = pos.desplazar(dir, largo);
 		
 		//Compruevo que el tubo no se salga
-		if(matriz.length>posFinal.getY() && matriz[0].length > posFinal.getX()){
+		if(matriz.length > posFinal.getY() && matriz[0].length > posFinal.getX()
+				&& pos.getX() >= 0 && pos.getY() >= 0){
 			for(Posicion posActual = pos;largo != 0;largo--,posActual = posActual.adyacente(dir)){
 				setCelda(new Celda(), posActual);
 			}
 		}
 	}
 	
+	/**
+	 * Inserta una {@linkplain Entidad} en la tuberia
+	 * @param e {@linkplain Entidad} a ser insertada
+	 * @param p {@linkplain Posicion} a ser insertada
+	 */
 	public void insertarEntidad(Entidad e,Posicion p){
 		Celda celda = getCelda(p);
 		if(celda != null){
@@ -247,34 +324,26 @@ public class Tuberia {
 		}
 	}
 	
+	/**
+	 * Saca una entidad de la tuberia
+	 * @param e {@linkplain Entidad} que se quiere sacar
+	 */
 	public void sacarEntidad(Entidad e){
 		if (entidades.contains(e)) {
 			if(jugador == e)
 				parar();
-			synchronized (dibujables) {
-				dibujables.remove(e);
-				entidades.remove(e);
-				//e.setPosActual(null);
-				//e.setTuberia(null);
-			}
+			dibujables.remove(e);
+			entidades.remove(e);
+			e.setPosActual(null);
+			e.setTuberia(null);
 		}
 	}
 
 	/**
-	 * @return el dibujables
+	 * @return Una coleccion de {@link Dibujable} que perite representar la {@link Tuberia} y su contenido
 	 */
 	public Collection<Dibujable> getDibujables() {
-		synchronized (dibujables) {
-			return new CopyOnWriteArrayList<Dibujable>(dibujables);
-		}
+		return /*new ArrayList<Dibujable>*/(dibujables);
 	}
-
-	/**
-	 * @param dibujables el dibujables a establecer
-	 */
-	/*
-	public void setDibujables(TreeSet<Dibujable> dibujables) {
-		this.dibujables = new TreeSet<Dibujable>(dibujables);
-	}*/
 	
 }

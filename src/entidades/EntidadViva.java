@@ -6,8 +6,10 @@ package entidades;
 import juego.Entidad;
 
 /**
- * @author juan
- *
+ * Esta clase representa a las entidades vivas del juego.
+ * 
+ * @author Juan Angel Sanchez Lopez - Tomás Gómez Castilla 
+ * 
  */
 public abstract class EntidadViva extends Entidad {
 	private long ultimoRespito;
@@ -22,8 +24,9 @@ public abstract class EntidadViva extends Entidad {
 	public long aire(){
 		return (System.currentTimeMillis() - ultimoRespito);
 	}
-	/* (sin Javadoc)
-	 * @see juego.Entidad#turno()
+	/**
+	 * Ejecuta {@link #turnoViva()} si esta sigue viva, en caso contrario se sale de la tuberia
+	 * 
 	 */
 	@Override
 	public void turno() {
@@ -35,6 +38,9 @@ public abstract class EntidadViva extends Entidad {
 			getTuberia().sacarEntidad(this);
 		}
 	}
+	/**
+	 * Ejecuta la accion correspondiente a estar vivo
+	 */
 	protected abstract void turnoViva();
 
 }

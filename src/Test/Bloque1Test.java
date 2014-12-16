@@ -5,6 +5,16 @@ import estructura.Posicion;
 import estructura.Celda;
 import estructura.Tuberia;
 
+/**
+ * Esta clase main es una de las clases que se usan como
+ * bateria de pruebas. 
+ * 
+ * En ella se recoge las pruebas del Bloque 1.
+ * 
+ * @author Juan Angel Sanchez Lopez - Tomás Gómez Castilla 
+ * 
+ */
+
 public class Bloque1Test {
 
 	public static void main(String[] args) {

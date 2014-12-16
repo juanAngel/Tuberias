@@ -23,10 +23,16 @@ public class Llave extends Celda {
 	
 	// METODOS GET Y SET
 
+	/**
+	 * @return
+	 */
 	public boolean isAbierta() {
 		return abierta;
 	}
 
+	/**
+	 * @param abierta
+	 */
 	public void setAbierta(boolean abierta) {
 		this.abierta = abierta;
 	}
@@ -42,6 +48,7 @@ public class Llave extends Celda {
 	
 	/**
 	 * Permite el paso del agua si abierta es true.
+	 * @see Celda#agregarAgua()
 	 */
 	@Override
 	public void agregarAgua(Celda origen){
@@ -51,6 +58,7 @@ public class Llave extends Celda {
 
 	/**
 	 * Impide el paso del agua si abierta es false.
+	 * @see Celda#agregarAgua()
 	 */
 	@Override
 	public void extraerAgua(Celda origen){
@@ -60,11 +68,17 @@ public class Llave extends Celda {
 
 	// METODOS OBJECT
 	
+	/* (sin Javadoc)
+	 * @see estructura.Celda#clone()
+	 */
 	@Override
 	public Llave clone() {
 		return new Llave();
 	}
 
+	/* (sin Javadoc)
+	 * @see estructura.Celda#toString()
+	 */
 	@Override
 	public String toString() {
 		return "Llave [abierta=" + abierta + ", toString()=" + super.toString()

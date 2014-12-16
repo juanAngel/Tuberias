@@ -26,6 +26,7 @@ public class Contador extends Celda{
 
 	/**
 	 * Incrementa el caudal en uno y deja salir el agua.
+	 * @see Celda#agregarAgua()
 	 */
 	@Override
 	public void agregarAgua(Celda origen){
@@ -39,15 +40,24 @@ public class Contador extends Celda{
 		}*/
 	}
 	
+	/**
+	 * @return la cantidad de agua que salio por el contador
+	 */
 	public int getIncCaudal(){
 		return incCaudal;
 	}
 
+	/* (sin Javadoc)
+	 * @see estructura.Celda#clone()
+	 */
 	@Override
 	public Contador clone() {
 		return new Contador();
 	}
 
+	/* (sin Javadoc)
+	 * @see estructura.Celda#toString()
+	 */
 	@Override
 	public String toString() {
 		return "Contador [incCaudal=" + incCaudal + ", toString()="

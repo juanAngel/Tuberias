@@ -17,25 +17,43 @@ public class Posicion {
 	
 	// CONSTRUCTORES
 
+	/**
+	 * Constructor
+	 * @param x
+	 * @param y
+	 */
 	public Posicion(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
 	
+	/**
+	 * Constructor copia
+	 * @param p
+	 */
 	public Posicion(Posicion p){
 		this(p.x,p.y);
 	}
 	
+	/**
+	 * Representa la posicion 0,0
+	 */
 	public Posicion() {
 		this(0, 0);
 	}
 	
 	// METODOS GET Y SET
 
+	/**
+	 * @return el valor de X
+	 */
 	public int getX() {
 		return x;
 	}
 
+	/**
+	 * @return el valor de Y
+	 */
 	public int getY() {
 		return y;
 	}
@@ -51,7 +69,9 @@ public class Posicion {
 	}
 	
 	/**
-	 * 
+	 * @param d Direccion del desplazamiento
+	 * @param distancia Distancia a desplazar
+	 * @return LA posicion desplazada con respecto al punto
 	 */
 	public Posicion desplazar(Direccion d,int distancia){
 		if(distancia<0)
@@ -92,11 +112,18 @@ public class Posicion {
 	
 	// METODOS OBJECT 
 	
+	/* (sin Javadoc)
+	 * @see java.lang.Object#clone()
+	 */
 	public Posicion clone(){
 		return new Posicion(this);
 	}
 	
-	public int hashcode (){
+	/* (sin Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode (){
 		
 		int primo= 31 ;
 		int result =1;
@@ -106,6 +133,10 @@ public class Posicion {
 		return result;
 	}
 
+	/* (sin Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
 	public boolean equals(Object obj){
 		
 		if (obj == null){
@@ -124,6 +155,9 @@ public class Posicion {
 	
 	}
 
+	/* (sin Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString(){
 		
 		return getClass().getName() + "[ Coord X: " + x + " // Coord Y: " + y + " ]";

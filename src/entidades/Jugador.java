@@ -3,6 +3,12 @@ package entidades;
 import estructura.Direccion;
 import estructura.Llave;
 
+/**
+ * Esta clase representa al jugador del juego.
+ * 
+ * @author Juan Angel Sanchez Lopez - Tomás Gómez Castilla 
+ * 
+ */
 public class Jugador extends EntidadViva {
 	private Direccion dirSig = null;
 	private boolean conmutarLLave = false;

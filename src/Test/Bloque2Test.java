@@ -4,6 +4,15 @@ import estructura.CeldaSegura;
 import estructura.Contador;
 import estructura.Llave;
 
+/**
+ * Esta clase main es una de las clases que se usan como
+ * bateria de pruebas. 
+ * 
+ * En ella se recoge las pruebas del Bloque 2.
+ * 
+ * @author Juan Ángel Sánchez López - Tomás Gómez Castilla 
+ * 
+ */
 public class Bloque2Test {
 
 	public static void main(String[] args) {

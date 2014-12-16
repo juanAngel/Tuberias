@@ -4,8 +4,12 @@
 package entidades;
 
 /**
- * @author juan
- *
+ * Esta clase representa a la bomba de inyeccion del juego.
+ * 
+ * En vez de extraer agua la inserta.
+ * 
+ * @author Juan Angel Sanchez Lopez - Tomás Gómez Castilla 
+ * 
  */
 public class BombaInyec extends Bomba {
 
@@ -18,7 +22,7 @@ public class BombaInyec extends Bomba {
 	}
 
 	/**
-	 * @param retardo
+	 * @param retardo de inyeccion
 	 */
 	public BombaInyec(int retardo) {
 		super(retardo);
@@ -33,6 +37,9 @@ public class BombaInyec extends Bomba {
 		getCelda().agregarAgua();
 	}
 
+	/* (sin Javadoc)
+	 * @see tuberias.vista.Dibujable#getImagen()
+	 */
 	@Override
 	public String getImagen() {
 		// TODO Apéndice de método generado automáticamente

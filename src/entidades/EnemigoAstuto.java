@@ -4,6 +4,13 @@ import estructura.Celda;
 import estructura.Direccion;
 import estructura.Llave;
 
+/**
+ * Esta clase representa a los enemigos astutos del juego.
+ * 
+ * @author Juan Angel Sanchez Lopez - Tomás Gómez Castilla 
+ * 
+ */
+
 public class EnemigoAstuto extends Enemigo {
 	final private int vision;
 	/**
@@ -27,6 +34,11 @@ public class EnemigoAstuto extends Enemigo {
 		else
 			mover(dir);
 	}
+	
+	/**
+	 * Busca la Celda no saturada mas cercana
+	 * @return La direccion hacia donde esta la Celda
+	 */
 	Direccion buscarCeldaNoSaturada(){
 		int masCerca = vision;
 		Direccion d = null;
@@ -46,6 +58,10 @@ public class EnemigoAstuto extends Enemigo {
 		}
 		return d;
 	}
+	/**
+	 * Busca la Llave abierta mas cercana
+	 * @return La direccion hacia donde esta la Celda
+	 */
 	Direccion buscarLlave(){
 		int masCerca = vision;
 		Direccion d = null;
@@ -67,6 +83,9 @@ public class EnemigoAstuto extends Enemigo {
 		return d;
 	}
 
+	/* Abre la llave si es la celda actual
+	 * @see entidades.Enemigo#accion()
+	 */
 	@Override
 	protected void accion() {
 		if (getCelda() instanceof Llave) {
@@ -75,6 +94,9 @@ public class EnemigoAstuto extends Enemigo {
 		}
 	}
 
+	/* (sin Javadoc)
+	 * @see tuberias.vista.Dibujable#getImagen()
+	 */
 	@Override
 	public String getImagen() {
 		// TODO Apéndice de método generado automáticamente

@@ -6,8 +6,10 @@ package entidades;
 import estructura.Llave;
 
 /**
- * @author juan
- *
+ * Esta clase representa a los enemigos locos del juego.
+ * 
+ * @author Juan Angel Sanchez Lopez - Tomás Gómez Castilla 
+ * 
  */
 public class EnemigoLoco extends Enemigo {
 
